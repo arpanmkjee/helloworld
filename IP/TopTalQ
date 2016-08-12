@@ -1,0 +1,147 @@
+##Explain the difference between a class and an object.
+
+In short, a class is the definition of an object, and an object is instance of a class.
+
+We can look at the class as a template of the object: it describes all the properties, methods, states and behaviors that the implementing object will have. As mentioned, an object is an instance of a class, and a class does not become an object until it is instantiated. There can be more instances of objects based on the one class, each with different properties.
+
+##Explain the difference between managed and unmanaged code.
+
+Managed code is a code created by the .NET compiler. It does not depend on the architecture of the target machine because it is executed by the CLR (Common Language Runtime), and not by the operating system itself. CLR and managed code offers developers few benefits, like garbage collection, type checking and exceptions handling.
+
+On the other hand, unmanaged code is directly compiled to native machine code and depends on the architecture of the target machine. It is executed directly by the operating system. In the unmanaged code, the developer has to make sure he is dealing with memory usage and allocation (especially because of memory leaks), type safety and exceptions manually.
+
+In .NET, Visual Basic and C# compiler creates managed code. To get unmanaged code, the application has to be written in C or C++.
+
+##Explain the difference between the while and for loop. Provide a .NET syntax for both loops.
+
+Both loops are used when a unit of code needs to execute repeatedly. The difference is that the for loop is used when you know how many times you need to iterate through the code. On the other hand, the while loop is used when you need to repeat something until a given statement is true.
+
+The syntax of the while loop in C# is:
+
+while (condition [is true])
+{
+  // statements
+}
+
+The syntax of the while loop in VB.NET is:
+
+While condition [is True]
+  ' statements
+End While
+
+The syntax of the for loop in C# is:
+
+for (initializer; condition; iterator)
+{
+  // statements
+}
+
+The syntax of the for loop in VB.NET is:
+
+For counter [ As datatype ] = start To end [ Step step ]
+  ' statements
+Next [ counter ]
+
+##Explain the difference between boxing and unboxing. Provide an example.
+
+Boxing is the process of converting a value type to the type object, and unboxing is extracting the value type from the object. While the boxing is implicit, unboxing is explicit.
+
+Example (written in C#):
+
+int i = 13;
+object myObject = i; 	// boxing 
+i = (int)myObject;	// unboxing 
+
+##Discuss the difference between constants and read-only variables.
+
+While constants and read-only variable share many similarities, there are some important differences:
+
+    Constants are evaluated at the compile-time, while the read-only variables are evaluated at the runtime.
+    Constants support only value-type variables, while read-only variables can hold reference type variables.
+    Constants should be used when the value is not changing during the runtime, and read-only variables are used mostly when their actual value is unknown before the runtime.
+
+##Explain what LINQ is.
+
+LINQ is an acronym for Language Integrated Query, and was introduced with Visual Studio 2008. LINQ is a set of features that extends query capabilities to the .NET language syntax by adding sets of new standard query operators that allow data manipulation, regardless of the data source. Supported data sources are: .NET Framework collections, SQL Server databases, ADO.NET Datasets, XML documents, and any collection of objects that support IEnumerable or the generic IEnumerable<T> interface, in both C# and Visual Basic. In short, LINQ bridges the gap between the world of objects and the world of data.
+Comment
+
+##Discuss what garbage collection is and how it works. Provide a code example of how you can enforce garbage collection in .NET.
+
+Garbage collection is a low-priority process that serves as an automatic memory manager which manages the allocation and release of memory for the applications. Each time a new object is created, the common language runtime allocates memory for that object from the managed Heap. As long as free memory space is available in the managed Heap, the runtime continues to allocate space for new objects. However, memory is not infinite, and once an application fills the Heap memory space, garbage collection comes into play to free some memory. When the garbage collector performs a collection, it checks for objects in the managed Heap that are no longer being used by the application and performs the necessary operations to reclaim the memory. Garbage collection will stop all running threads, it will find all objects in the Heap that are not being accessed by the main program and delete them. It will then reorganize all the objects left in the Heap to make space and adjust all the Pointers to these objects in both the Stack and the Heap.
+
+To enforce garbage collection in your code manually, you can run the following command (written in C#):
+
+System.GC.Collect();
+
+
+##What do the following acronyms in .NET stand for: IL, CIL, MSIL, CLI and JIT?
+
+IL, or Intermediate Language, is a CPU independent partially compiled code. IL code will be compiled to native machine code using current environmental properties by Just-In-Time compiler (JIT). JIT compiler translates the IL code to an assembly code and uses the CPU architecture of the target machine to execute a .NET application. In .NET, IL is called Common Intermediate Language (CIL), and in the early .NET days it was called Microsoft Intermediate Language (MSIL).
+
+CLI, or Common Language Infrastructure, is an open specification developed by Microsoft. It is a compiled code library used for deployment, versioning, and security. In .NET there are two CLI types: process assemblies (EXE) and library assemblies (DLL). CLI assemblies contain code in CIL, and as mentioned, during compilation of CLI programming languages, the source code is translated into CIL code rather than into platform or processor specific object code.
+
+To summarize:
+
+    When compiled, source code is first translated to IL (in .NET, that is CIL, and previously called MSIL).
+    CIL is then assembled into a bytecode and a CLI assembly is created.
+    Before code execution, CLI code is passed through the runtime’s JIT compiler to generate native machine code.
+    The computer’s processor executes the native machine code.
+
+##Explain the difference between the Stack and the Heap.
+
+The short answer would be: in the Stack are stored value types (types inherited from System.ValueType), and in the Heap are stored reference types (types inherited from System.Object).
+
+We can say the Stack is responsible for keeping track of what is actually executing and where each executing thread is (each thread has its own Stack). The Heap, on the other hand, is responsible for keeping track of the data, or more precise objects.
+
+##Explain what inheritance is, and why it’s important.
+
+Inheritance is one of the most important concepts in object-oriented programming, together with encapsulation and polymorphism. Inheritance allows developers to create new classes that reuse, extend, and modify the behavior defined in other classes. This enables code reuse and speeds up development. With inheritance, developers can write and debug one class only once, and then reuse that same code as the basis for the new classes. The class whose members are inherited is called the base class, and the class that inherits those members is called the derived class. By default, all classes in .NET are inheritable.
+Comment
+
+Explain the differences between an Interface and an Abstract Class in .NET.
+Hide answer
+
+An interface merely declares a contract or a behavior that implementing classes should have. It may declare only properties, methods, and events with no access modifiers. All the declared members must be implemented.
+
+An abstract class provides a partial implementation for a functionality and some abstract/virtual members that must be implemented by the inheriting entities. It can declare fields too.
+
+Neither interfaces nor abstract classes can be instantiated.
+
+##Explain deferred execution vs. immediate execution in LINQ. Provide examples.
+
+In LINQ, deferred execution simply means that the query is not executed at the time it is specified. Specifically, this is accomplished by assigning the query to a variable. When this is done, the query definition is stored in the variable but the query is not executed until the query variable is iterated over. For example:
+
+DataContext productContext = new DataContext();
+
+var productQuery = from product in productContext.Products
+        where product.Type == "SOAPS"
+        select product;   // Query is NOT executed here
+
+foreach (var product in productQuery)   // Query executes HERE
+{
+  Console.WriteLine(product.Name);
+}
+
+You can also force immediate execution of a query. This can be useful, for example, if the database is being updated frequently, and it is important in the logic of your program to ensure that the results you’re accessing are those returned at the point in your code where the query was specified. Immediate execution is often forced using a method such as Average, Sum, Count, List, ToList, or ToArray. For example:
+
+DataContext productContext = new DataContext();
+
+var productCountQuery = (from product in productContext.Products
+        where product.Type == "SOAPS"
+        select product).Count();   // Query executes HERE
+
+##What is a delegate in .NET?
+
+A delegate in .NET is similar to a function pointer in C or C++. Using a delegate allows the programmer to encapsulate a reference to a method inside a delegate object. The delegate object can then be passed to code which can call the referenced method, without having to know at compile time which method will be invoked. In addition, we could use delegate to create custom event within a class. For example,
+
+public delegate void FooDelegate();
+
+class FooClass
+{
+    // custom event
+    public event FooDelegate FooEvent;
+}
+
+FooClass FooObj = new FooClass()
+FooObj.FooEvent += new FooDelegate();
+
