@@ -1,0 +1,15 @@
+Old
+    1) From constructor to destructor (taking into consideration Dispose() and the concept of non-deterministic finalization), 
+       what the are events fired as part of the ASP.NET System.Web.UI.Page lifecycle. Why are they important? 
+       What interesting things can you do at each?
+    2) What are ASHX files?  What are HttpHandlers?  Where can they be configured?
+    3) What is needed to configure a new extension for use in ASP.NET? For example, what if I wanted my system to serve ASPX files with a *.jsp extension?
+    4) What events fire when binding data to a data grid? What are they good for?
+    5) Explain how PostBacks work, on both the client-side and server-side. How do I chain my own JavaScript into the client side 
+       without losing PostBack functionality?
+    6) How does ViewState work and why is it either useful or evil?
+    7) What is the OO relationship between an ASPX page and its CS/VB code behind file in ASP.NET 1.1? in 2.0?
+    8) What happens from the point an HTTP request is received on a TCP/IP port up until the Page fires the On_Load event?
+    9) How does IIS communicate at runtime with ASP.NET?  Where is ASP.NET at runtime in IIS5? IIS6?
+    10) What is an assembly binding redirect? Where are the places an administrator or developer can affect how assembly binding policy is applied?
+    11) Compare and contrast LoadLibrary(), CoCreateInstance(), CreateObject() and Assembly.Load().
